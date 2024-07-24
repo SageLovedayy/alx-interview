@@ -6,12 +6,15 @@ returns True if valid UTF_8 encoding, False otherwise.
 
 Implementation
 - Handle only the 8 LSBs of each integer (1111111 i.e 0xFF)
-- Determine the number of bytes in the sequence using the first byte, return false if first byte is invalid
+- Determine the number of bytes in the sequence using the first byte
+  return false if first byte is invalid
 - Loop over coninuation bytes and check for enough bytes left in the list to
 complete the character sequence
 - Validate coninuation bytes (also check onlly the 8 LSBs) to be sure they
 match the format 10xxxxxx
 """
+
+
 def validUTF8(data):
     i = 0
     while i < len(data):
@@ -29,10 +32,10 @@ def validUTF8(data):
         else:
             return False
 
-       # check continuation byte
+        # check continuation byte
         for j in range(1, num_bytes):
             if i + j >= len(data):
-                return False # not enough bytes for current character
+                return False  # not enough bytes for current character
 
             # validate sequence in next byte using 8LSBs
             next_byte = data[i + j] & 0xFF
@@ -42,8 +45,3 @@ def validUTF8(data):
         i += num_bytes
 
     return True
-
-    
-
-    
-
