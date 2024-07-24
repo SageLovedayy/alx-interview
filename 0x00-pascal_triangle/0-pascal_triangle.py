@@ -18,6 +18,8 @@ or equal to 0. If this is the case, we would return an empty array
 
 
 def pascal_triangle(n):
+    """Returns a list of lists representation of the triangle"""
+
     if n <= 0:
         return []
 
